@@ -14,10 +14,14 @@ public class MainDate {
 		System.out.println("El mes es: "+tomorrow.getMonthName());
 		System.out.println("¿El dia "+tomorrow.getDay()+" del mes "+tomorrow.getMonth()+" es correcto? "+tomorrow.isMonthDayOk());
 		System.out.println("¿El dia "+today.getDay()+" del mes "+today.getMonth()+" es correcto? "+today.isMonthDayOk());
-		System.out.println("La estación del mes "+tomorrow.getMonthName()+" es: "+tomorrow.getMonthSeason());
+		System.out.println("La estacion del mes "+tomorrow.getMonthName()+" es: "+tomorrow.getMonthSeason());
 		
-		System.out.println("Quedan "+today.monthsLeft()+" mes/meses");
-		System.out.println("Quedan "+tomorrow.monthsLeft()+" mes/meses");
+		System.out.println("Quedan "+today.monthsLeft());
+		System.out.println("Quedan "+tomorrow.monthsLeft());
+		System.out.println("La fecha de hoy es: "+today.toString());
+		System.out.println("La fecha de maniana es: "+tomorrow.toString());
+
+		System.out.println("Fechas hasta fin de mes"+today.toStringLastDates());
 	}
 
 }

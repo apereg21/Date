@@ -54,10 +54,13 @@ public class Date {
 	public String toString(){
 		return this.day + "/" + this.month + "/" + this.year;
 	}
-
 	public String getMonthName(){
+		return this.getMonthName(this.getMonth());
+	}
+
+	public String getMonthName(int i){
 	String name=null;
-	switch(this.month){
+	switch(i){
 	case 1:
 		name="Enero";
 	break;
@@ -163,11 +166,43 @@ public class Date {
 	}
 
 	
-	String monthsLeft(){
-	StringBuilder months=new StringBuilder();
-	for(int i = this.month; i<=12;i++){
-		months.append(this.getMonthName());
+	public String monthsLeft(){
+	StringBuffer monthsLeft=new StringBuffer();
+	for(int i = this.month+1; i<=12;i++){
+		monthsLeft.append(this.getMonthName(i)+",");
 	}
-	return months.toString();
-	}	
+	return monthsLeft.toString();
+	}
+	
+	public String toStringLastDates(){
+	switch(this.month){
+	case 1://next
+	case 3://next
+	case 5://next
+	case 7://next
+	case 8://next
+	case 10://next
+	case 12:
+		for(int i=this.day-1; i<=31; i++)
+		this.day++;		
+			
+	break;
+	case 2:
+		for(int i=this.day-1; i<=28; i++)
+		this.day++;		
+			
+	break;
+	case 4://next
+	case 6://next
+	case 9://next
+	case 11:
+		for(int i=this.day-1; i<=30; i++)
+		this.day++;		
+		
+	break;	
+	}
+	for()
+	return this.day+ "/" + this.month + "/" + this.year;;
+	}
+	
 }
