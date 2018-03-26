@@ -134,28 +134,40 @@ public class Date {
 	case 7://next
 	case 8://next
 	case 10://next
-	case 12://next
+	case 12:
 		if(this.day<=31){
 		ok=true;
-		}		ok=false;	
+		}
+		else		
+		ok=false;	
 	break;
-	case 2://next
+	case 2:
 		if(this.day<=28){
 		ok=true;
 		}
+		else
 		ok=false;	
 	break;
 	case 4://next
 	case 6://next
 	case 9://next
-	case 11://next
+	case 11:
 		if(this.day<=30){
 		ok=true;
 		}
+		else
 		ok=false;	
 	break;
 	}
 	return ok;
 	}
 
+	
+	String monthsLeft(){
+	StringBuilder months=new StringBuilder();
+	for(int i = this.month; i<=12;i++){
+		months.append(this.getMonthName());
+	}
+	return months.toString();
+	}	
 }
