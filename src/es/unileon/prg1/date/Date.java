@@ -7,9 +7,10 @@ public class Date {
 	
 	// Constructor mal programado: Permite crear fechas no validas
 	public Date(int day, int month, int year){
-		this.day = day;
-		this.month = month;
+		
 		this.year = year;
+		this.month = month;
+		this.day = day;
 	}
 	
 	public int getYear(){
@@ -57,8 +58,12 @@ public class Date {
 	public String getMonthName(){
 		return this.getMonthName(this.getMonth());
 	}
+	
+	public String getMonthDaySame(){
+		return this.getMonthDaySame(this.getMonth());
+	}
 
-	public String getMonthName(int i){
+	private String getMonthName(int i){
 	String name=null;
 	switch(i){
 	case 1:
@@ -165,7 +170,6 @@ public class Date {
 	return ok;
 	}
 
-	
 	public String monthsLeft(){
 	StringBuffer monthsLeft=new StringBuffer();
 	for(int i = this.month+1; i<=12;i++){
@@ -173,36 +177,51 @@ public class Date {
 	}
 	return monthsLeft.toString();
 	}
+
+	//TODO el metodo de Fechas hasta fin de mes
 	
-	public String toStringLastDates(){
-	switch(this.month){
-	case 1://next
-	case 3://next
-	case 5://next
-	case 7://next
-	case 8://next
-	case 10://next
-	case 12:
-		for(int i=this.day-1; i<=31; i++)
-		this.day++;		
-			
+	private String getMonthDaySame(int i){
+	String name=null;
+	switch(i){
+	case 1:
+		name="El propio Enero,Marzo,Mayo,Julio,Agosto,Octubre y Diciembre";
 	break;
 	case 2:
-		for(int i=this.day-1; i<=28; i++)
-		this.day++;		
-			
+		name="Febrero es el unico mes con 28 dias";
 	break;
-	case 4://next
-	case 6://next
-	case 9://next
+	case 3:
+		name="Enero,el propio Marzo,Mayo,Julio,Agosto,Octubre y Diciembre";
+	break;
+	case 4:
+		name="El propio Abril,Junio,Septiembre y Noviembre";
+	break;
+	case 5:
+		name="Enero, Marzo,el propio Mayo,Julio,Agosto,Octubre y Diciembre";
+	break;
+	case 6:
+		name="Abril,el propio Junio,Septiembre y Noviembre";
+	break;
+	case 7:
+		name="Enero,Marzo,Mayo,el propio Julio,Agosto,Octubre y Diciembre";
+	break;
+	case 8:
+		name="Enero,Marzo,Mayo,Julio,Agosto,el propio Octubre y Diciembre";
+	break;
+	case 9:
+		name="Abril,Junio,el propio Septiembre y Noviembre";
+	break;
+	case 10:
+		name="Enero,Marzo,Mayo,Julio,Agosto,el propio Octubre y Diciembre";
+	break;
 	case 11:
-		for(int i=this.day-1; i<=30; i++)
-		this.day++;		
-		
-	break;	
+		name="Abril,Junio,Septiembre y el propio Noviembre";
+	break;
+	case 12:
+		name="Enero,Marzo,Mayo,Julio,Agosto,Octubre y el propio Diciembre";
+	break;
 	}
-	for()
-	return this.day+ "/" + this.month + "/" + this.year;;
+	return name;
 	}
+
 	
 }
