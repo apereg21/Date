@@ -179,7 +179,18 @@ public class Date {
 	}
 
 	//TODO el metodo de Fechas hasta fin de mes
-	
+	public String DatesLeftMonth(){
+	StringBuffer DatesLeft=new StringBuffer();
+	for(int i=this.day;i<=31;i++){
+	Date left;	
+	left = new Date(i,this.month,this.year);
+		if(left.isMonthDayOk()==true){
+		DatesLeft.append(left+"\n");
+		}
+	}
+	return DatesLeft.toString();
+	}
+
 	private String getMonthDaySame(int i){
 	String name=null;
 	switch(i){
@@ -223,5 +234,23 @@ public class Date {
 	return name;
 	}
 
-	
+	public String DaysLeftEndYear(){
+	int counter=0;
+	Date CountDays= new Date(this.day,this,month,this.year);
+	for (int i=1;i<=this.month;i++){
+		if(i==this.month){
+			for (int j=1;j<=this.day;j++){
+			counter=counter+1;
+			}
+		}
+		else{
+			for (int j=1;CountDays.isDayMonthOk(i)==true;j++){
+			CountDays.day=j+1;
+			counter=counter+1;
+			}
+			CountDays.day=this.day;
+		}
+	}
+	return counter;
+	}
 }

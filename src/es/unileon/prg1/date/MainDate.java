@@ -4,7 +4,7 @@ public class MainDate {
 
 	public static void main(String[] args) {
 		Date today,tomorrow;
-		today = new Date(20, 3, 2018);
+		today = new Date(20, 2, 2018);
 		tomorrow = new Date(21, 3, 2018);
 		
 		System.out.println(today + " isSameYear " + tomorrow + "? " + today.isSameYear(tomorrow));
@@ -25,8 +25,9 @@ public class MainDate {
 		System.out.println("La fecha de hoy es: "+today.toString());
 		System.out.println("La fecha de maniana es: "+tomorrow.toString());
 		
-		//TODO el print del DatesLeft
-		System.out.println("Quedan "+today.getMonthDaySame());
+		System.out.println("Las fechas antes de fin de mes, sinedo este "+today.getMonthName()+" : "+today.DatesLeftMonth());
+		System.out.println(today.getMonthDaySame());
+		System.out.println("Quedan "+today.DaysLeftEndYear()+" dias");
 		
 	}
 
