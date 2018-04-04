@@ -4,7 +4,7 @@ public class MainDate {
 
 	public static void main(String[] args) {
 		Date today,tomorrow;
-		today = new Date(20, 2, 2018);
+		today = new Date(2, 1, 2018);
 		tomorrow = new Date(21, 3, 2018);
 		
 		System.out.println(today + " isSameYear " + tomorrow + "? " + today.isSameYear(tomorrow));
@@ -24,11 +24,13 @@ public class MainDate {
 		
 		System.out.println("La fecha de hoy es: "+today.toString());
 		System.out.println("La fecha de maniana es: "+tomorrow.toString());
-		
-		System.out.println("Las fechas antes de fin de mes, sinedo este "+today.getMonthName()+" : "+today.DatesLeftMonth());
-		System.out.println(today.getMonthDaySame());
-		System.out.println("Quedan "+today.DaysLeftEndYear()+" dias");
-		
+		System.out.println("Las fechas antes de fin de mes, siendo este "+today.getMonthName()+" : "+today.DatesLeftMonth());
+		System.out.println("Las fechas antes de fin de mes, siendo este "+tomorrow.getMonthName()+" : "+tomorrow.DatesLeftMonth());
+
+		System.out.println("El mes o los meses con el mismo numero de dias es/son "+today.sameMonthsWithSameDays());
+		System.out.println("El mes o los meses con el mismo numero de dias es/son "+tomorrow.sameMonthsWithSameDays());
+		System.out.println("Los dias que han pasado desde el inicio del año hasta "+today.toString()+" : "+today.DaysStartYear());
+		System.out.println("Los dias que han pasado desde el inicio del año hasta "+tomorrow.toString()+" : "+tomorrow.DaysStartYear());
 	}
 
 }

@@ -56,13 +56,13 @@ public class Date {
 		return this.day + "/" + this.month + "/" + this.year;
 	}
 	public String getMonthName(){
-		return this.getMonthName(this.getMonth());
+		return this.getMonthName(this.month);
 	}
 	
-	public String getMonthDaySame(){
-		return this.getMonthDaySame(this.getMonth());
+	public boolean isMonthDayOk(){
+		return this.isMonthDayOk(this.getMonth());
 	}
-
+	
 	private String getMonthName(int i){
 	String name=null;
 	switch(i){
@@ -133,8 +133,8 @@ public class Date {
 	return name;
 	}
 	
-	boolean isMonthDayOk(){
-	boolean ok=false;
+	private int getMonthLastDay(){
+	int lastDay=1;
 	switch(this.month){
 	case 1://next
 	case 3://next
@@ -143,14 +143,39 @@ public class Date {
 	case 8://next
 	case 10://next
 	case 12:
-		if(this.day<=31){
+		lastDay=31;		
+	break;
+	case 2:
+		lastDay=28;	
+	break;
+	case 4://next
+	case 6://next
+	case 9://next
+	case 11:
+		lastDay=30;	
+	break;
+	}
+	return lastDay;
+	}
+
+	private boolean isMonthDayOk(int i){
+	boolean ok=false;
+	switch(i){
+	case 1://next
+	case 3://next
+	case 5://next
+	case 7://next
+	case 8://next
+	case 10://next
+	case 12:
+		if(this.day>=0 &&  this.day<=31){
 		ok=true;
 		}
 		else		
 		ok=false;	
 	break;
 	case 2:
-		if(this.day<=28){
+		if(this.day>=0 && this.day<=28){
 		ok=true;
 		}
 		else
@@ -160,7 +185,7 @@ public class Date {
 	case 6://next
 	case 9://next
 	case 11:
-		if(this.day<=30){
+		if(this.day>=0 && this.day<=30){
 		ok=true;
 		}
 		else
@@ -169,7 +194,6 @@ public class Date {
 	}
 	return ok;
 	}
-
 	public String monthsLeft(){
 	StringBuffer monthsLeft=new StringBuffer();
 	for(int i = this.month+1; i<=12;i++){
@@ -178,7 +202,7 @@ public class Date {
 	return monthsLeft.toString();
 	}
 
-	//TODO el metodo de Fechas hasta fin de mes
+	
 	public String DatesLeftMonth(){
 	StringBuffer DatesLeft=new StringBuffer();
 	for(int i=this.day;i<=31;i++){
@@ -191,66 +215,35 @@ public class Date {
 	return DatesLeft.toString();
 	}
 
-	private String getMonthDaySame(int i){
-	String name=null;
-	switch(i){
-	case 1:
-		name="El propio Enero,Marzo,Mayo,Julio,Agosto,Octubre y Diciembre";
-	break;
-	case 2:
-		name="Febrero es el unico mes con 28 dias";
-	break;
-	case 3:
-		name="Enero,el propio Marzo,Mayo,Julio,Agosto,Octubre y Diciembre";
-	break;
-	case 4:
-		name="El propio Abril,Junio,Septiembre y Noviembre";
-	break;
-	case 5:
-		name="Enero, Marzo,el propio Mayo,Julio,Agosto,Octubre y Diciembre";
-	break;
-	case 6:
-		name="Abril,el propio Junio,Septiembre y Noviembre";
-	break;
-	case 7:
-		name="Enero,Marzo,Mayo,el propio Julio,Agosto,Octubre y Diciembre";
-	break;
-	case 8:
-		name="Enero,Marzo,Mayo,Julio,Agosto,el propio Octubre y Diciembre";
-	break;
-	case 9:
-		name="Abril,Junio,el propio Septiembre y Noviembre";
-	break;
-	case 10:
-		name="Enero,Marzo,Mayo,Julio,Agosto,el propio Octubre y Diciembre";
-	break;
-	case 11:
-		name="Abril,Junio,Septiembre y el propio Noviembre";
-	break;
-	case 12:
-		name="Enero,Marzo,Mayo,Julio,Agosto,Octubre y el propio Diciembre";
-	break;
+	public String sameMonthsWithSameDays(){
+	StringBuffer sameMonthsWithSameDays= new StringBuffer();
+		for(int i=1;i<=12;i++){
+		Date sameDay= new Date(this.day,i,this.year);
+			if(this.getMonthLastDay()==sameDay.getMonthLastDay()){
+			sameMonthsWithSameDays.append(this.getMonthName(i)+", ");
+			}
+		}
+	return sameMonthsWithSameDays.toString();
 	}
-	return name;
-	}
-
-	public String DaysLeftEndYear(){
+	
+	public int DaysStartYear(){
 	int counter=0;
-	Date CountDays= new Date(this.day,this,month,this.year);
-	for (int i=1;i<=this.month;i++){
-		if(i==this.month){
-			for (int j=1;j<=this.day;j++){
-			counter=counter+1;
+	Date countDays= new Date(this.day,this.month,this.year);
+		for (int i=1;i<=this.month;i++){
+			if(i==this.month){
+				for (int j=1;j<=this.day;j++){
+				counter=counter+1;
+				}
 			}
-		}
-		else{
-			for (int j=1;CountDays.isDayMonthOk(i)==true;j++){
-			CountDays.day=j+1;
-			counter=counter+1;
+			else{
+				for (int j=1;countDays.isMonthDayOk(i)==true;j++){
+				countDays.day=j+1;
+				counter=counter+1;
+				}
+			countDays.day=this.day;
 			}
-			CountDays.day=this.day;
+	
 		}
-	}
 	return counter;
-	}
+	}	
 }
