@@ -12,7 +12,7 @@ public class Date {
 		this.month = month;
 		this.day = day;
 	}
-	
+
 	public int getYear(){
 		return this.year;
 	}
@@ -60,8 +60,12 @@ public class Date {
 	}
 	
 	public boolean isMonthDayOk(){
-		return this.isMonthDayOk(this.getMonth());
+		return this.isMonthDayOk(this.month);
 	}
+	
+	public int MonthLastDay(){
+		return this.MonthLastDay(this.month);
+	}	
 	
 	private String getMonthName(int i){
 	String name=null;
@@ -133,9 +137,9 @@ public class Date {
 	return name;
 	}
 	
-	private int getMonthLastDay(){
+	private int MonthLastDay(int i){
 	int lastDay=1;
-	switch(this.month){
+	switch(i){
 	case 1://next
 	case 3://next
 	case 5://next
@@ -209,7 +213,7 @@ public class Date {
 	Date left;	
 	left = new Date(i,this.month,this.year);
 		if(left.isMonthDayOk()==true){
-		DatesLeft.append(left+"\n");
+		DatesLeft.append("\n"+left);
 		}
 	}
 	return DatesLeft.toString();
@@ -219,7 +223,7 @@ public class Date {
 	StringBuffer sameMonthsWithSameDays= new StringBuffer();
 		for(int i=1;i<=12;i++){
 		Date sameDay= new Date(this.day,i,this.year);
-			if(this.getMonthLastDay()==sameDay.getMonthLastDay()){
+			if(this.MonthLastDay()==sameDay.MonthLastDay()){
 			sameMonthsWithSameDays.append(this.getMonthName(i)+", ");
 			}
 		}
@@ -245,5 +249,18 @@ public class Date {
 	
 		}
 	return counter;
-	}	
+	}
+	//TODO los metodos de la fecha aleatoria y el dia de la semana
+	
+	public int randomDate(){
+        int tries, d=1, m=1;
+        tries = 0;
+        	do{
+        		m = (int) (Math.random()*12) + 1;
+        		d = (int) (Math.random()*this.MonthLastDay(m) ) + 1;
+			tries++;
+		}while (!isSame(new Date(m,d,this.year)));
+	return tries;
+	}
+	
 }
