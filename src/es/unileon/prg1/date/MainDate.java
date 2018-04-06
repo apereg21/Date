@@ -4,9 +4,9 @@ public class MainDate {
 
 	public static void main(String[] args) {
 		Date today,tomorrow;
-		today = new Date(2, 1, 2018);
-		tomorrow = new Date(21, 3, 2018);
-		
+		today = new Date(30, 1, 2018);
+		tomorrow = new Date(30, 3, 2018);
+
 		System.out.println(today + " isSameYear " + tomorrow + "? " + today.isSameYear(tomorrow)+"\n");
 		System.out.println(today + " isSameMonth " + tomorrow + "? " + today.isSameMonth(tomorrow)+"\n");
 		System.out.println(today + " isSameDay " + tomorrow + "? " + today.isSameDay(tomorrow)+"\n");
@@ -24,16 +24,17 @@ public class MainDate {
 		
 		System.out.println("La fecha de hoy es: "+today.toString()+"\n");
 		System.out.println("La fecha de maniana es: "+tomorrow.toString()+"\n");
-		System.out.println("Las fechas antes de fin de mes, siendo este "+today.getMonthName()+" : "+today.DatesLeftMonth()+"\n");
-		System.out.println("Las fechas antes de fin de mes, siendo este "+tomorrow.getMonthName()+" : "+tomorrow.DatesLeftMonth()+"\n");
+		System.out.println("Las fechas antes de fin de mes, siendo este "+today.getMonthName()+" : "+today.datesLeftMonth()+"\n");
+		System.out.println("Las fechas antes de fin de mes, siendo este "+tomorrow.getMonthName()+" : "+tomorrow.datesLeftMonth()+"\n");
 
 		System.out.println("El mes o los meses con el mismo numero de dias es/son "+today.sameMonthsWithSameDays()+"\n");
 		System.out.println("El mes o los meses con el mismo numero de dias es/son "+tomorrow.sameMonthsWithSameDays()+"\n");
-		System.out.println("Los dias que han pasado desde el inicio del año hasta "+today.toString()+" : "+today.DaysStartYear()+"\n");
-		System.out.println("Los dias que han pasado desde el inicio del año hasta "+tomorrow.toString()+" : "+tomorrow.DaysStartYear()+"\n");
-		//¿Porque solo me deja de una fecha hacer el metodo randomDate()?
-		System.out.println("Se necesitaron "+today.randomDate()+" intentos para generar la misma fecha que "+today.toString()+" dentro del año "+today.getYear()+"\n");
-		//System.out.println("Se necesitaron "+tomorrow.randomDate()+" intentos para generar la misma fecha que "+tomorrow.toString()+" dentro del año "+tomorrow.getYear());
+		System.out.println("Los dias que han pasado desde el inicio del año hasta "+today.toString()+" : "+today.daysStartYear()+"\n");
+		System.out.println("Los dias que han pasado desde el inicio del año hasta "+tomorrow.toString()+" : "+tomorrow.daysStartYear()+"\n");
+		System.out.println("Se necesitaron "+today.randomDate()+" intentos para adivinar la fecha "+today.toString());
+		System.out.println("Se necesitaron "+tomorrow.randomDate()+" intentos para adivinar la fecha "+tomorrow.toString());
+		System.out.println("La fecha "+today.toString()+" fue un "+today.dayOfTheWeek());
+		System.out.println("La fecha "+tomorrow.toString()+" fue un "+tomorrow.dayOfTheWeek());
 	}
 
 }

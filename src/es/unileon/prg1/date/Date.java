@@ -63,9 +63,10 @@ public class Date {
 		return this.isMonthDayOk(this.month);
 	}
 	
-	public int MonthLastDay(){
-		return this.MonthLastDay(this.month);
-	}	
+	public int monthLastDay(){
+		return this.monthLastDay(this.month);
+	}
+	
 	
 	private String getMonthName(int i){
 	String name=null;
@@ -137,7 +138,7 @@ public class Date {
 	return name;
 	}
 	
-	private int MonthLastDay(int i){
+	private int monthLastDay(int i){
 	int lastDay=1;
 	switch(i){
 	case 1://next
@@ -207,30 +208,30 @@ public class Date {
 	}
 
 	
-	public String DatesLeftMonth(){
-	StringBuffer DatesLeft=new StringBuffer();
+	public String datesLeftMonth(){
+	StringBuffer datesLeft=new StringBuffer();
 	for(int i=this.day;i<=31;i++){
 	Date left;	
 	left = new Date(i,this.month,this.year);
 		if(left.isMonthDayOk()==true){
-		DatesLeft.append("\n"+left);
+		datesLeft.append("\n"+left);
 		}
 	}
-	return DatesLeft.toString();
+	return datesLeft.toString();
 	}
 
 	public String sameMonthsWithSameDays(){
 	StringBuffer sameMonthsWithSameDays= new StringBuffer();
 		for(int i=1;i<=12;i++){
 		Date sameDay= new Date(this.day,i,this.year);
-			if(this.MonthLastDay()==sameDay.MonthLastDay()){
-			sameMonthsWithSameDays.append(this.getMonthName(i)+", ");
+			if(this.monthLastDay()==sameDay.monthLastDay()){
+			sameMonthsWithSameDays.append(this.getMonthName(i)+" ");
 			}
 		}
 	return sameMonthsWithSameDays.toString();
 	}
 	
-	public int DaysStartYear(){
+	public int daysStartYear(){
 	int counter=0;
 	Date countDays= new Date(this.day,this.month,this.year);
 		for (int i=1;i<=this.month;i++){
@@ -253,14 +254,52 @@ public class Date {
 	//TODO los metodos de la fecha aleatoria y el dia de la semana
 	
 	public int randomDate(){
-        int tries, d=1, m=1;
-        tries = 0;
+        int intentos, day=1, month=1;
+        intentos = 0;
+	Date rand=new Date(day,month,this.year);
         	do{
-        		m = (int) (Math.random()*12) + 1;
-        		d = (int) (Math.random()*this.MonthLastDay(m) ) + 1;
-			tries++;
-		}while (!isSame(new Date(m,d,this.year)));
-	return tries;
+        		rand.month = (int)(Math.random()*12) + 1;
+        		rand.day = (int)(Math.random()*this.monthLastDay(month)) + 1;
+        		++intentos;
+		}while (this.isSame(rand)==false);
+	return intentos;
+	}
+	
+	private String nameOfTheDays(int i){
+	String nameDay=null;
+	switch(i){
+	case 1:
+		nameDay="Lunes";
+	break;
+	case 2:
+		nameDay="Martes";
+	break;
+	case 3:
+		nameDay="Miercoles";
+	break;
+	case 4:
+		nameDay="Jueves";
+	break;
+	case 5:
+		nameDay="Viernes";
+	break;
+	case 6:
+		nameDay="Lunes";
+	break;
+	case 0:
+		nameDay="Lunes";	
+	break;
+	}
+	return nameDay;
+	}
+
+	public String dayOfTheWeek(){
+        int day;
+        day = this.daysStartYear();
+        	while (day>=7){
+        		day=day%7;
+		}
+	return (this.nameOfTheDays(day));
 	}
 	
 }
