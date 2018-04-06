@@ -234,24 +234,24 @@ public class Date {
 	public int daysStartYear(){
 	int counter=0;
 	Date countDays= new Date(this.day,this.month,this.year);
-		for (int i=1;i<=this.month;i++){
-			if(i==this.month){
-				for (int j=1;j<=this.day;j++){
+		for (int i=1;i<=countDays.month;i++){
+			if(i==countDays.month){
+				for (int j=0;j<countDays.day;j++){
 				counter=counter+1;
 				}
 			}
 			else{
-				for (int j=1;countDays.isMonthDayOk(i)==true;j++){
+				for (int j=0;j<countDays.monthLastDay(i);j++){
 				countDays.day=j+1;
 				counter=counter+1;
 				}
+			counter=counter;
 			countDays.day=this.day;
 			}
 	
 		}
 	return counter;
-	}
-	//TODO los metodos de la fecha aleatoria y el dia de la semana
+}
 	
 	public int randomDate(){
         int intentos, day=1, month=1;

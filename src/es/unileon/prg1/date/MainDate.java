@@ -4,8 +4,8 @@ public class MainDate {
 
 	public static void main(String[] args) {
 		Date today,tomorrow;
-		today = new Date(30, 1, 2018);
-		tomorrow = new Date(31, 12, 2018);
+		today = new Date(1, 7, 2018);
+		tomorrow = new Date(11, 11, 2018);
 
 		System.out.println(today + " isSameYear " + tomorrow + "? " + today.isSameYear(tomorrow)+"\n");
 		System.out.println(today + " isSameMonth " + tomorrow + "? " + today.isSameMonth(tomorrow)+"\n");
