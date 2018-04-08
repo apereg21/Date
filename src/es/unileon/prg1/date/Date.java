@@ -6,13 +6,35 @@ public class Date {
 	private int year;
 	
 	// Constructor mal programado: Permite crear fechas no validas
-	public Date(int day, int month, int year){
+	public Date(int day, int month, int year)throws DateException{
+		StringBuffer message = new StringBuffer();
+		if ( day <= 0){
+			message.append("Dia no valido, no pueden ser negativo - wrong value for day: " + day + "\n");
+		}
+		if ( month <= 0 ){
+			message.append("Mes no valido, no pueden ser negativo - wrong value for month: " + month + "\n");			
+		} else {
+			if ( month > 12 ){
+				message.append("Rango de valor de los meses desde 1 hasta 12, no puede ser mayor - wrong value for month: " + month + "\n");							
+			} else {
+				if ( day > monthLastDay(month) ){
+					message.append("Combinacion dia/mes - wrong combination: " + day + "/" + month + "\n");						
+				}				
+			}
+		}
+		if ( year < 0 ){
+			message.append("Año negativo - wrong value for year: " + year + "\n");			
+		}
 		
-		this.year = year;
-		this.month = month;
-		this.day = day;
-	}
-
+		if ( message.length() != 0){
+			throw new DateException(message.toString());
+		} else {
+			this.day = day;
+			this.month = month;
+			this.year = year;
+		}
+}
+	
 	public int getYear(){
 		return this.year;
 	}
@@ -210,29 +232,38 @@ public class Date {
 	
 	public String datesLeftMonth(){
 	StringBuffer datesLeft=new StringBuffer();
+	try {
 	for(int i=this.day;i<=31;i++){
-	Date left;	
-	left = new Date(i,this.month,this.year);
+	Date left= new Date(i,this.month,this.year);
 		if(left.isMonthDayOk()==true){
 		datesLeft.append("\n"+left);
 		}
 	}
+	}catch (DateException e){
+			System.err.println("Date.datesLeftMonth: "+e.getMessage());
+	}
 	return datesLeft.toString();
 	}
-
+	
 	public String sameMonthsWithSameDays(){
 	StringBuffer sameMonthsWithSameDays= new StringBuffer();
+	try{
 		for(int i=1;i<=12;i++){
 		Date sameDay= new Date(this.day,i,this.year);
 			if(this.monthLastDay()==sameDay.monthLastDay()){
 			sameMonthsWithSameDays.append(this.getMonthName(i)+" ");
 			}
 		}
+	}catch (DateException e){
+			System.err.println("Date.sameMonthsWithSameDays: "+e.getMessage());
+	}
 	return sameMonthsWithSameDays.toString();
 	}
 	
 	public int daysStartYear(){
+	
 	int counter=0;
+	try{
 	Date countDays= new Date(this.day,this.month,this.year);
 		for (int i=1;i<=countDays.month;i++){
 			if(i==countDays.month){
@@ -250,18 +281,25 @@ public class Date {
 			}
 	
 		}
+	}catch (DateException e){
+			System.err.println("Date.daysStartYear: "+e.getMessage());
+	}
 	return counter;
 }
 	
 	public int randomDate(){
         int intentos, day=1, month=1;
         intentos = 0;
+	try{
 	Date rand=new Date(day,month,this.year);
         	do{
         		rand.month = (int)(Math.random()*12) + 1;
         		rand.day = (int)(Math.random()*this.monthLastDay(month)) + 1;
         		++intentos;
 		}while (this.isSame(rand)==false);
+	}catch (DateException e){
+			System.err.println("Date.randomDate: "+e.getMessage());
+	}
 	return intentos;
 	}
 	
